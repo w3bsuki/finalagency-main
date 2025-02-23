@@ -7,8 +7,8 @@ import { BorderBeam } from "@/components/ui/border-beam";
 
 const solutions = [
   {
-    title: "Enterprise",
-    description: "Transform your business with AI-powered automation and analytics",
+    title: "Business",
+    description: "AI automations and analytics\nfor growth and efficiency",
     icon: (className?: string) => (
       <svg 
         viewBox="0 0 24 24" 
@@ -27,8 +27,8 @@ const solutions = [
     href: "/solutions/business"
   },
   {
-    title: "Industrial",
-    description: "Optimize manufacturing and industrial processes with AI",
+    title: "Industry",
+    description: "Smart manufacturing solutions\nfor process optimization",
     icon: (className?: string) => (
       <svg 
         viewBox="0 0 24 24" 
@@ -49,7 +49,7 @@ const solutions = [
   },
   {
     title: "Government",
-    description: "Secure and compliant AI solutions for public sector",
+    description: "Secure AI implementations\nfor public sector needs",
     icon: (className?: string) => (
       <svg 
         viewBox="0 0 24 24" 
@@ -58,11 +58,9 @@ const solutions = [
         className={className}
         strokeWidth="1"
       >
-        <path d="M12 3L3 8h18l-9-5z" strokeLinecap="round"/>
-        <path d="M5 20h14" strokeLinecap="round"/>
-        <path d="M6 10v8" strokeLinecap="round"/>
-        <path d="M12 10v8" strokeLinecap="round"/>
-        <path d="M18 10v8" strokeLinecap="round"/>
+        <path d="M12 3L3 7v2l9 4 9-4V7l-9-4z" strokeLinecap="round"/>
+        <path d="M3 14l9 4 9-4" strokeLinecap="round"/>
+        <path d="M3 10l9 4 9-4" strokeLinecap="round"/>
       </svg>
     ),
     metric: "99.9%",
@@ -88,15 +86,15 @@ export function Solutions() {
           <div className="h-[1px] flex-grow bg-white/10" />
           <Link 
             href="/solutions" 
-            className="text-lg text-white/60 hover:text-white transition-colors flex items-center gap-2 group font-light tracking-wide"
+            className="text-lg text-white hover:text-white/80 transition-colors flex items-center gap-2 group font-light tracking-wide"
           >
             View All
-            <ArrowRight className="w-5 h-5 text-white/60 group-hover:text-white transition-colors group-hover:translate-x-1" />
+            <ArrowRight className="w-5 h-5 text-white group-hover:text-white/80 transition-colors group-hover:translate-x-1" />
           </Link>
         </div>
 
         {/* Solutions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-16">
           {solutions.map((solution, index) => (
             <motion.div
               key={solution.title}
@@ -107,42 +105,38 @@ export function Solutions() {
                 initial: { opacity: 0, y: 20 },
                 animate: { opacity: 1, y: 0, transition: { delay: index * 0.1 } }
               }}
-              className="w-full max-w-sm"
+              className="w-full"
             >
               <Link href={solution.href} className="block group">
-                <div className="relative p-6 rounded-lg border border-white/10 bg-black/40 backdrop-blur-sm hover:bg-black/60 transition-colors h-[280px] flex flex-col items-center text-center overflow-hidden">
-                  <div className="absolute inset-0 rounded-lg overflow-hidden">
-                    <BorderBeam 
-                      colorFrom="rgba(255, 255, 255, 0.4)"
-                      colorTo="rgba(255, 255, 255, 0.2)"
-                      duration={6}
-                      size={150}
-                    />
-                  </div>
+                <div className="relative p-4 md:p-6 rounded-lg border-2 border-white/[0.15] bg-black/50 backdrop-blur-sm hover:bg-black/70 transition-all duration-300 h-[280px] flex flex-col items-center text-center overflow-hidden shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.15] to-transparent opacity-50 pointer-events-none" />
                   
                   {/* Icon Container */}
-                  <div className="relative p-2.5 rounded-lg backdrop-blur-sm border border-white/10 mb-4">
-                    {solution.icon("w-6 h-6 text-white/80")}
+                  <div className="relative p-2.5 rounded-lg backdrop-blur-sm border border-white/20 mb-4 bg-white/[0.05] w-[44px] h-[44px] flex items-center justify-center">
+                    {solution.icon("w-6 h-6 text-white/90")}
                   </div>
                   
-                  <h3 className="text-3xl font-light text-white mb-2 relative z-10">
+                  <h3 className="text-2xl md:text-3xl font-light text-white mb-3 relative z-10">
                     {solution.title}
                   </h3>
-                  <p className="text-sm text-white/60 mb-auto relative z-10">
+                  <p className="text-sm md:text-base text-white/70 mb-auto relative z-10 max-w-[280px] whitespace-pre-line leading-relaxed">
                     {solution.description}
                   </p>
                   
+                  {/* Separator Line */}
+                  <div className="w-full h-px bg-white/10 mb-4 relative z-10" />
+                  
                   {/* Metric */}
-                  <div className="flex items-center justify-between w-full mt-4 relative z-10">
+                  <div className="flex items-center justify-between w-full relative z-10 px-2 md:px-0 h-[24px]">
                     <div className="flex items-baseline gap-1.5">
-                      <span className="text-xl font-semibold text-white">
+                      <span className="text-lg md:text-xl font-semibold text-white">
                         {solution.metric}
                       </span>
-                      <span className="text-xs text-white/60">
+                      <span className="text-xs md:text-sm text-white/70">
                         {solution.metricLabel}
                       </span>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-white/60 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="w-4 h-4 text-white/70 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
@@ -155,25 +149,28 @@ export function Solutions() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative max-w-2xl mx-auto text-center"
+          className="relative max-w-2xl mx-auto text-center px-4 md:px-0"
         >
-          <div className="relative p-8 rounded-lg border border-white/10 bg-black/40 backdrop-blur-sm overflow-hidden">
+          <div className="relative p-4 md:p-6 rounded-lg border-2 border-white/[0.15] bg-black/50 backdrop-blur-sm overflow-hidden shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.15] to-transparent opacity-50 pointer-events-none" />
             <BorderBeam 
               colorFrom="rgba(255, 255, 255, 0.4)"
               colorTo="rgba(255, 255, 255, 0.2)"
               duration={6}
               size={150}
             />
-            <h2 className="text-3xl text-white font-light mb-4">Ready to Transform Your Business?</h2>
-            <p className="text-base text-white/60 mb-8">
-              Schedule a consultation to discover how our AI solutions can drive your success
+            <h3 className="text-xl md:text-2xl font-light text-white mb-1 relative z-10">
+              Ready to transform your business?
+            </h3>
+            <p className="text-sm md:text-base text-white/70 mb-4 relative z-10">
+              Get started with our AI solutions today
             </p>
-            <Link 
-              href="/contact" 
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors group"
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 text-sm md:text-base text-white hover:text-white/80 transition-colors"
             >
-              <span className="text-lg font-light">Get Started</span>
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              Contact Us
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </motion.div>

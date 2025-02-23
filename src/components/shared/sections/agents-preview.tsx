@@ -11,7 +11,7 @@ const agents = [
   {
     name: "AIDR",
     description: "Most Powerful Agent",
-    longDescription: "Experience the power of advanced AI research and data analysis with our flagship agent.",
+    longDescription: "Advanced AI research and data analysis\nOptimized for complex problem-solving\nPowered by cutting-edge algorithms",
     href: "/agents/aidr",
     icon: (className?: string) => (
       <svg 
@@ -31,7 +31,7 @@ const agents = [
   {
     name: "AIDO",
     description: "Process Optimization Agent",
-    longDescription: "Transform your operations with AI-powered optimization and automation.",
+    longDescription: "AI-powered operational excellence\nStreamlined workflow automation\nReal-time performance insights",
     href: "/agents/aido",
     icon: (className?: string) => (
       <svg 
@@ -51,7 +51,7 @@ const agents = [
   {
     name: "AIDY",
     description: "Customer Support Agent",
-    longDescription: "Experience seamless customer support with our AI-powered assistant that understands and responds in real-time.",
+    longDescription: "24/7 intelligent assistance\nReal-time response and support\nSeamless customer experience",
     href: "/agents/aidy",
     icon: (className?: string) => (
       <svg 
@@ -117,16 +117,9 @@ export function AgentsPreview() {
               className="w-full max-w-sm"
             >
               <motion.div 
-                className="relative p-6 rounded-lg border border-white/10 bg-black/40 backdrop-blur-sm h-[300px] flex flex-col items-center text-center overflow-hidden"
+                className="relative p-4 md:p-6 rounded-lg border-2 border-white/[0.15] bg-black/50 backdrop-blur-sm hover:bg-black/70 transition-all duration-300 flex flex-col shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]"
               >
-                <div className="absolute inset-0 rounded-lg overflow-hidden">
-                  <BorderBeam 
-                    colorFrom="rgba(255, 255, 255, 0.4)"
-                    colorTo="rgba(255, 255, 255, 0.2)"
-                    duration={6}
-                    size={150}
-                  />
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.15] to-transparent opacity-50 pointer-events-none" />
                 
                 {/* Icon Container */}
                 <div className="relative p-2.5 rounded-lg backdrop-blur-sm border border-white/10 mb-4">
@@ -135,17 +128,23 @@ export function AgentsPreview() {
                 
                 {/* Content Container */}
                 <div className="flex-1 flex flex-col items-center relative z-10">
-                  <h3 className="text-3xl font-light text-white mb-2">
-                    {agent.name}
-                  </h3>
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="text-2xl md:text-3xl font-light text-white">
+                      {agent.name}
+                    </h3>
+                    <div className="relative flex items-center">
+                      <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                      <div className="absolute w-2 h-2 rounded-full bg-green-400 animate-ping" />
+                    </div>
+                  </div>
                   
-                  <p className="text-sm text-white/60 mb-3">
+                  <p className="text-base text-white/70 mb-3 text-center">
                     {agent.description}
                   </p>
                   
-                  <p className="text-xs text-white/40 max-w-[240px] leading-relaxed">
+                  <div className="text-sm text-white/50 leading-relaxed text-center whitespace-pre-line">
                     {agent.longDescription}
-                  </p>
+                  </div>
                 </div>
 
                 {/* Action Button */}
@@ -178,20 +177,30 @@ export function AgentsPreview() {
         >
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl text-white font-light mb-4">Ask our Agents</h2>
-              <p className="text-white/60 max-w-2xl mx-auto text-lg">
-                Experience the power of our AI agents firsthand. Ask a question or describe your needs.
-              </p>
+              <h2 className="text-3xl text-white font-light">Ask our Agents</h2>
             </div>
 
             <div className="relative">
-              <VercelChat />
-              <motion.div 
-                className="absolute inset-0 rounded-lg opacity-[0.03]"
-                style={{
-                  background: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.8) 0%, transparent 60%)',
-                }}
-              />
+              <div className="relative p-2 md:p-3 rounded-lg border-2 border-white/[0.15] bg-black/50 backdrop-blur-sm overflow-hidden shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.15] to-transparent opacity-50 pointer-events-none" />
+                <BorderBeam 
+                  colorFrom="rgba(255, 255, 255, 0.4)"
+                  colorTo="rgba(255, 255, 255, 0.2)"
+                  duration={6}
+                  size={150}
+                />
+                <VercelChat />
+                <motion.div 
+                  className="absolute inset-0 rounded-lg pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                  style={{
+                    background: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%)',
+                    filter: 'blur(20px)'
+                  }}
+                />
+              </div>
             </div>
           </div>
         </motion.div>

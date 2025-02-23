@@ -27,7 +27,7 @@ export function Header() {
           {/* Logo */}
           <Link 
             href="/" 
-            className="text-xl font-light tracking-wider hover:text-white/90 transition-colors"
+            className="text-xl font-light tracking-wider hover:text-white/90 transition-colors cursor-pointer"
           >
             SYNTAI
           </Link>

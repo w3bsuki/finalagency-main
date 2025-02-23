@@ -115,10 +115,10 @@ export function ContactSection() {
           transition={{ duration: 0.8 }}
         >
           {/* Content */}
-          <div className="flex flex-col gap-8 lg:sticky lg:top-24">
-            <div className="space-y-6">
+          <div className="flex flex-col gap-6 lg:gap-8 lg:sticky lg:top-24">
+            <div className="space-y-4 md:space-y-6">
               <motion.span
-                className="text-white/60 font-medium"
+                className="inline-block text-white/60 font-medium px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -126,7 +126,7 @@ export function ContactSection() {
                 Contact Us
               </motion.span>
               <motion.h2 
-                className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white"
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -136,9 +136,9 @@ export function ContactSection() {
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-6">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
               <motion.div 
-                className="flex items-center gap-3"
+                className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.03] hover:bg-white/[0.05] transition-colors"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -156,7 +156,7 @@ export function ContactSection() {
               </motion.div>
               
               <motion.div 
-                className="flex items-center gap-3"
+                className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.03] hover:bg-white/[0.05] transition-colors"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -174,7 +174,7 @@ export function ContactSection() {
               </motion.div>
               
               <motion.div 
-                className="flex items-center gap-3"
+                className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.03] hover:bg-white/[0.05] transition-colors sm:col-span-2 lg:col-span-1"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -191,19 +191,21 @@ export function ContactSection() {
             </div>
 
             {/* Benefits */}
-            <div className="border-t border-white/10 pt-6 mt-6">
+            <div className="border border-white/10 rounded-lg p-4 md:p-6 bg-white/[0.02]">
               <h3 className="text-lg font-semibold text-white mb-4">Why work with us?</h3>
               <div className="grid gap-3">
                 {benefits.map((benefit, index) => (
                   <motion.div 
                     key={benefit}
-                    className="flex items-center gap-2 text-white/60"
+                    className="flex items-center gap-2.5 text-white/70"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.5 + index * 0.1 }}
                   >
-                    <CheckCircle2 className="h-5 w-5 text-white" />
+                    <div className="p-1 rounded-full bg-white/5">
+                      <CheckCircle2 className="h-4 w-4 text-white" />
+                    </div>
                     <span>{benefit}</span>
                   </motion.div>
                 ))}
@@ -213,7 +215,7 @@ export function ContactSection() {
 
           {/* Form */}
           <div className="relative">
-            <Card className="p-6 bg-black/40 backdrop-blur-sm border-white/10">
+            <Card className="p-4 md:p-6 lg:p-8 bg-black/40 backdrop-blur-sm border-white/10">
               <BorderBeam 
                 colorFrom="rgba(255, 255, 255, 0.2)"
                 colorTo="rgba(255, 255, 255, 0.1)"
@@ -222,7 +224,7 @@ export function ContactSection() {
               />
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField
                       control={form.control}
                       name="firstName"
@@ -232,7 +234,7 @@ export function ContactSection() {
                           <FormControl>
                             <Input 
                               placeholder="Enter your first name" 
-                              className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/40" 
+                              className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-1 focus:ring-white/20" 
                               disabled={isSubmitting}
                               {...field} 
                             />
@@ -250,7 +252,7 @@ export function ContactSection() {
                           <FormControl>
                             <Input 
                               placeholder="Enter your last name" 
-                              className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/40" 
+                              className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-1 focus:ring-white/20" 
                               disabled={isSubmitting}
                               {...field} 
                             />
@@ -271,7 +273,7 @@ export function ContactSection() {
                           <Input 
                             placeholder="Enter your work email" 
                             type="email" 
-                            className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/40" 
+                            className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-1 focus:ring-white/20" 
                             disabled={isSubmitting}
                             {...field} 
                           />
@@ -290,7 +292,7 @@ export function ContactSection() {
                         <FormControl>
                           <Input 
                             placeholder="Enter your company name" 
-                            className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/40" 
+                            className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-1 focus:ring-white/20" 
                             disabled={isSubmitting}
                             {...field} 
                           />
@@ -309,12 +311,12 @@ export function ContactSection() {
                         <FormControl>
                           <Textarea 
                             placeholder="Tell us about your project and requirements" 
-                            className="min-h-[120px] resize-none bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                            className="min-h-[120px] resize-none bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-white/20 focus:ring-1 focus:ring-white/20"
                             disabled={isSubmitting}
                             {...field}
                           />
                         </FormControl>
-                        <FormDescription className="text-xs text-white/40">
+                        <FormDescription className="text-sm text-white/40">
                           Please provide details about your project, goals, and any specific requirements.
                         </FormDescription>
                         <FormMessage className="text-red-400" />
@@ -325,7 +327,7 @@ export function ContactSection() {
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full h-12 text-base rounded-full bg-white text-black hover:bg-white/90"
+                    className="w-full h-12 text-base font-medium rounded-full bg-white text-black hover:bg-white/90 transition-colors"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -348,12 +350,8 @@ export function ContactSection() {
 
                   <p className="text-sm text-white/40 text-center">
                     By submitting this form, you agree to our{' '}
-                    <Link href="/terms" className="underline underline-offset-4 hover:text-white">
+                    <Link href="/terms" className="underline underline-offset-4 hover:text-white/60">
                       Terms of Service
-                    </Link>
-                    {' '}and{' '}
-                    <Link href="/privacy" className="underline underline-offset-4 hover:text-white">
-                      Privacy Policy
                     </Link>
                   </p>
                 </form>

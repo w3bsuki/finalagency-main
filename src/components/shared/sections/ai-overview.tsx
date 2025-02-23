@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 const capabilities = [
   {
     title: "Natural Language",
-    description: "Advanced NLP for human-like understanding and communication",
+    description: "Advanced NLP for human-like communication",
     icon: (className?: string) => (
       <svg 
         viewBox="0 0 24 24" 
@@ -28,7 +28,7 @@ const capabilities = [
   },
   {
     title: "Machine Learning",
-    description: "Self-improving algorithms that adapt to your needs",
+    description: "Self-improving algorithms for automation",
     icon: (className?: string) => (
       <svg 
         viewBox="0 0 24 24" 
@@ -47,7 +47,7 @@ const capabilities = [
   },
   {
     title: "Predictive Analytics",
-    description: "Forecast trends and outcomes with precision",
+    description: "Forecast trends and optimize maintenance",
     icon: (className?: string) => (
       <svg 
         viewBox="0 0 24 24" 
@@ -56,67 +56,12 @@ const capabilities = [
         className={className}
         strokeWidth="1"
       >
-        <path d="M4 19L12 4L20 19" strokeLinecap="round"/>
-        <path d="M7 14H17" strokeLinecap="round"/>
-        <path d="M9 10H15" strokeLinecap="round"/>
+        <path d="M3 20L21 20" strokeLinecap="round"/>
+        <path d="M3 20L9 8L15 14L21 4" strokeLinecap="round"/>
       </svg>
     ),
     metric: "85%",
     metricLabel: "Prediction Rate"
-  },
-  {
-    title: "Security & Privacy",
-    description: "Enterprise-grade security with data protection",
-    icon: (className?: string) => (
-      <svg 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        className={className}
-        strokeWidth="1"
-      >
-        <path d="M12 3L20 7V11C20 15.4183 16.4183 19 12 19C7.58172 19 4 15.4183 4 11V7L12 3Z" strokeLinecap="round"/>
-        <path d="M9 11L11 13L15 9" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    metric: "99.9%",
-    metricLabel: "Uptime"
-  },
-  {
-    title: "Real-time Processing",
-    description: "Instant analysis and decision-making capabilities",
-    icon: (className?: string) => (
-      <svg 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        className={className}
-        strokeWidth="1"
-      >
-        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    metric: "<50ms",
-    metricLabel: "Response Time"
-  },
-  {
-    title: "Automation",
-    description: "Streamline operations with intelligent automation",
-    icon: (className?: string) => (
-      <svg 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        className={className}
-        strokeWidth="1"
-      >
-        <path d="M12 4L4 8L12 12L20 8L12 4Z" strokeLinecap="round"/>
-        <path d="M4 12L12 16L20 12" strokeLinecap="round"/>
-        <path d="M4 16L12 20L20 16" strokeLinecap="round"/>
-      </svg>
-    ),
-    metric: "60%",
-    metricLabel: "Cost Reduction"
   }
 ];
 
@@ -146,30 +91,22 @@ export function AiOverview() {
           </div>
 
           {/* Capabilities Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {capabilities.map((capability, index) => (
               <motion.div
                 key={capability.title}
-                initial="initial"
-                whileInView="animate"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                variants={{
-                  initial: { opacity: 0, y: 20 },
-                  animate: { opacity: 1, y: 0, transition: { delay: index * 0.1 } }
-                }}
+                className="relative"
               >
-                <div className="relative p-6 rounded-lg border border-white/10 bg-black/40 backdrop-blur-sm hover:bg-black/60 transition-colors h-[240px] flex flex-col items-center text-center group">
-                  <GlowingEffect
-                    disabled={false}
-                    glow={true}
-                    variant="default"
-                    blur={2}
-                    spread={40}
-                    inactiveZone={0.2}
-                    borderWidth={1}
-                  />
-                  <div className="p-2 w-fit rounded-lg backdrop-blur-sm border border-white/10 mb-3 transition-transform duration-300 group-hover:scale-110">
-                    {capability.icon("h-4 w-4 text-white/80")}
+                <div className="relative p-4 md:p-6 rounded-lg border-2 border-white/[0.15] bg-black/50 backdrop-blur-sm hover:bg-black/70 transition-all duration-300 h-[240px] flex flex-col items-center text-center group shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.15] to-transparent opacity-50 pointer-events-none" />
+                  
+                  {/* Icon Container */}
+                  <div className="relative p-2.5 rounded-lg backdrop-blur-sm border border-white/20 mb-3 md:mb-4 bg-white/[0.05]">
+                    {capability.icon("w-5 h-5 md:w-6 md:h-6 text-white/90")}
                   </div>
                   
                   <h3 className="text-xl font-light text-white mb-2">
