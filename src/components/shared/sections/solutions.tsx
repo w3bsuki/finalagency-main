@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { BorderBeam } from "@/components/ui/border-beam";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 
 const solutions = [
   {
@@ -71,109 +72,75 @@ const solutions = [
 
 export function Solutions() {
   return (
-    <section className="relative w-full flex flex-col items-center justify-center overflow-hidden bg-black py-24">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_-100px,rgba(147,51,234,0.1),transparent)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-black via-black to-black/90" />
-      
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-[0.1]" />
-
-      <div className="container relative z-10 max-w-6xl mx-auto px-4">
-        {/* Header with separator */}
-        <div className="flex items-center gap-4 mb-16">
-          <span className="text-3xl text-white font-light tracking-wide">Solutions</span>
-          <div className="h-[1px] flex-grow bg-white/10" />
-          <Link 
-            href="/solutions" 
-            className="text-lg text-white hover:text-white/80 transition-colors flex items-center gap-2 group font-light tracking-wide"
-          >
-            View All
-            <ArrowRight className="w-5 h-5 text-white group-hover:text-white/80 transition-colors group-hover:translate-x-1" />
-          </Link>
+    <section className="relative w-full min-h-screen bg-black py-12 md:py-24">
+      <div className="container relative z-10 max-w-6xl mx-auto px-4 h-full flex flex-col">
+        {/* Header */}
+        <div className="text-center mb-8 md:mb-16">
+          <h2 className="text-4xl md:text-6xl text-white font-light">
+            Solutions
+          </h2>
         </div>
 
         {/* Solutions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-16">
-          {solutions.map((solution, index) => (
-            <motion.div
-              key={solution.title}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              variants={{
-                initial: { opacity: 0, y: 20 },
-                animate: { opacity: 1, y: 0, transition: { delay: index * 0.1 } }
-              }}
-              className="w-full"
-            >
-              <Link href={solution.href} className="block group">
-                <div className="relative p-4 md:p-6 rounded-lg border-2 border-white/[0.15] bg-black/50 backdrop-blur-sm hover:bg-black/70 transition-all duration-300 h-[280px] flex flex-col items-center text-center overflow-hidden shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.15] to-transparent opacity-50 pointer-events-none" />
-                  
-                  {/* Icon Container */}
-                  <div className="relative p-2.5 rounded-lg backdrop-blur-sm border border-white/20 mb-4 bg-white/[0.05] w-[44px] h-[44px] flex items-center justify-center">
-                    {solution.icon("w-6 h-6 text-white/90")}
-                  </div>
-                  
-                  <h3 className="text-2xl md:text-3xl font-light text-white mb-3 relative z-10">
-                    {solution.title}
-                  </h3>
-                  <p className="text-sm md:text-base text-white/70 mb-auto relative z-10 max-w-[280px] whitespace-pre-line leading-relaxed">
-                    {solution.description}
-                  </p>
-                  
-                  {/* Separator Line */}
-                  <div className="w-full h-px bg-white/10 mb-4 relative z-10" />
-                  
-                  {/* Metric */}
-                  <div className="flex items-center justify-between w-full relative z-10 px-2 md:px-0 h-[24px]">
-                    <div className="flex items-baseline gap-1.5">
-                      <span className="text-lg md:text-xl font-semibold text-white">
-                        {solution.metric}
-                      </span>
-                      <span className="text-xs md:text-sm text-white/70">
-                        {solution.metricLabel}
-                      </span>
+        <div className="flex-grow flex items-center py-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+            {solutions.map((solution, index) => (
+              <motion.div
+                key={solution.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <Link href={solution.href} className="block h-full">
+                  <div className="relative p-6 rounded-lg border-2 border-white/[0.15] bg-black/50 backdrop-blur-sm hover:bg-black/70 transition-all duration-300 flex flex-col items-center text-center group shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.15] to-transparent opacity-50 pointer-events-none" />
+                    
+                    {/* Icon Container */}
+                    <div className="relative p-3 rounded-lg backdrop-blur-sm border border-white/20 mb-4 bg-white/[0.05]">
+                      {solution.icon("w-6 h-6 text-white/90")}
                     </div>
-                    <ArrowRight className="w-4 h-4 text-white/70 transition-transform group-hover:translate-x-1" />
+                    
+                    <h3 className="text-xl font-light text-white mb-3">
+                      {solution.title}
+                    </h3>
+                    <p className="text-base text-white/60 mb-6">
+                      {solution.description}
+                    </p>
+                    
+                    {/* Metric */}
+                    <div className="mt-auto pt-4 border-t border-white/10 w-full">
+                      <div className="flex items-baseline justify-center gap-2">
+                        <span className="text-xl font-semibold text-white">
+                          {solution.metric}
+                        </span>
+                        <span className="text-sm text-white/60">
+                          {solution.metricLabel}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        {/* Minimalist CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative max-w-2xl mx-auto text-center px-4 md:px-0"
-        >
-          <div className="relative p-4 md:p-6 rounded-lg border-2 border-white/[0.15] bg-black/50 backdrop-blur-sm overflow-hidden shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.15] to-transparent opacity-50 pointer-events-none" />
-            <BorderBeam 
-              colorFrom="rgba(255, 255, 255, 0.4)"
-              colorTo="rgba(255, 255, 255, 0.2)"
-              duration={6}
-              size={150}
-            />
-            <h3 className="text-xl md:text-2xl font-light text-white mb-1 relative z-10">
-              Ready to transform your business?
-            </h3>
-            <p className="text-sm md:text-base text-white/70 mb-4 relative z-10">
-              Get started with our AI solutions today
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 text-sm md:text-base text-white hover:text-white/80 transition-colors"
-            >
-              Contact Us
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </motion.div>
+        {/* CTA Button */}
+        <div className="flex justify-center mt-8 md:mt-16">
+          <ShimmerButton
+            className="text-base md:text-lg"
+            shimmerColor="#ffffff"
+            shimmerDuration="2s"
+            onClick={() => window.location.href = '/solutions'}
+          >
+            <span className="text-white/90 font-medium flex items-center gap-2">
+              View All Solutions
+              <ArrowRight className="w-5 h-5" />
+            </span>
+          </ShimmerButton>
+        </div>
       </div>
     </section>
   );

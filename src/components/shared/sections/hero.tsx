@@ -4,8 +4,12 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { useRouter } from "next/navigation";
 
 export function HeroSection() {
+  const router = useRouter();
+
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black">
       {/* Background Elements */}
@@ -36,27 +40,26 @@ export function HeroSection() {
           </motion.h2>
 
           {/* CTA Buttons */}
-          <motion.div
-            className="flex items-center gap-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <Link 
-              href="/solutions"
-              className="text-lg text-white/60 hover:text-white transition-colors border-b border-white/20 hover:border-white/60 pb-0.5 flex items-center gap-2 font-light tracking-wider group"
-            >
-              Services
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link 
-              href="/agents"
-              className="text-lg text-white/60 hover:text-white transition-colors border-b border-white/20 hover:border-white/60 pb-0.5 flex items-center gap-2 font-light tracking-wider group"
-            >
-              Agents
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </motion.div>
+          <div className="flex flex-col items-center justify-center gap-8 md:gap-12">
+            <div className="flex flex-col gap-4 md:flex-row md:gap-8">
+              <ShimmerButton
+                className="w-full md:w-[140px] text-lg"
+                shimmerColor="#ffffff"
+                shimmerDuration="2s"
+                onClick={() => router.push("/solutions")}
+              >
+                <span className="text-white/90 font-medium">Services</span>
+              </ShimmerButton>
+              <ShimmerButton
+                className="w-full md:w-[140px] text-lg"
+                shimmerColor="#ffffff"
+                shimmerDuration="2s"
+                onClick={() => router.push("/agents")}
+              >
+                <span className="text-white/90 font-medium">Agents</span>
+              </ShimmerButton>
+            </div>
+          </div>
         </div>
       </div>
     </div>
